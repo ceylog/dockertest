@@ -8,7 +8,7 @@ RUN apk add --no-cache --update-cache curl unzip ca-certificates bash && \
     apk del curl unzip ca-certificates && \
     mv gradle-3.4.1 /gradle
 
-ENV GRADLE_HOME=/maven
+ENV GRADLE_HOME=/gradle
 ENV PATH=${PATH}:${GRADLE_HOME}/bin
 
 
