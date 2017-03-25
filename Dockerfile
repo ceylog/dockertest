@@ -1,4 +1,4 @@
-FROM daocloud.io/ceylog/gradle:gradle-4f613d2
+FROM daocloud.io/ceylog/gradle:gradle-9e4ff85
 
 RUN gradle build -x test && \
     mv build/libs/dockertest-0.0.1.jar /app.jar && \
