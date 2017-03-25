@@ -1,6 +1,6 @@
-FROM daocloud.io/ceylog/server-jre8:master-3e59905
+FROM daocloud.io/ceylog/dockertest:gradle-4f613d2
 
-RUN ./gradlew build -x test && \
+RUN gradle build -x test && \
     mv build/libs/dockertest-0.0.1.jar /app.jar && \
     rm -rf build
 
