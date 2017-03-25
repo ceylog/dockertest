@@ -1,8 +1,12 @@
 FROM daocloud.io/ceylog/gradle:gradle-9e4ff85
 
-RUN gradle build -x test && \
+ADD build.gradle /tmp/build/
+ADD src /tmp/build/src
+
+RUN cd /tmp/build && \
+    gradle build -x test && \
     mv build/libs/dockertest-0.0.1.jar /app.jar && \
-    rm -rf build
+    cd / && rm -rf /tmp/build
 
 VOLUME /tmp
 EXPOSE 8080
