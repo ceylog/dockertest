@@ -6,7 +6,8 @@ ENV MAVEN_VERSION=3.3.9 \
 WORKDIR /tmp
 
 RUN apk add --no-cache --update-cache curl ca-certificates bash && \
-    curl -Lo apache-maven-${MAVEN_VERSION}-bin.tar.gz ${MAVEN_URL} | gunzip -c - | tar -xf - && \
+    curl -Lo apache-maven-${MAVEN_VERSION}-bin.tar.gz ${MAVEN_URL} && \
+    tar -xf apache-maven-${MAVEN_VERSION}-bin.tar.gz
     apk del curl ca-certificates && \
     mv apache-maven-${MAVEN_VERSION} /maven && \
 
