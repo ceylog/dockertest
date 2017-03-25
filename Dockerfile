@@ -1,4 +1,4 @@
-FROM daocloud.io/ceylog/gradle:gradle-9e4ff85
+FROM daocloud.io/ceylog/gradle:gradle-8845bb9
 
 ADD build.gradle /tmp/build/
 ADD src /tmp/build/src
