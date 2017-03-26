@@ -1,14 +1,17 @@
-FROM daocloud.io/ceylog/server-jre8:master-3e59905
+FROM daocloud.io/ceylog/maven:master-bf765aa
 
-WORKDIR /tmp
+ADD pom.xml /tmp/build/
+RUN cd /tmp/build && mvn -q dependency:resolve
 
-RUN apk add --no-cache --update-cache curl ca-certificates bash && \
-    curl -Lo apache-maven-3.3.9-bin.tar.gz "http://mirrors.hust.edu.cn/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz" && \
-    tar -xf apache-maven-3.3.9-bin.tar.gz && \
-    apk del curl ca-certificates && \
-    mv apache-maven-3.3.9 /maven
+ADD src /tmp/build/src
 
-ENV M2_HOME=/maven
-ENV PATH=${PATH}:${M2_HOME}/bin
+RUN cd /tmp/build && mvn -q -DskipTests=true package && \
+    mv target/*.jar /app.jar && \
+    cd / && rm -rf /tmp/build
+
+VOLUME /tmp
+EXPOSE 8080
+
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
 
