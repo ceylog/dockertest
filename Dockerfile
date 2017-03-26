@@ -1,4 +1,4 @@
-FROM daocloud.io/ceylog/server-jre8:master-3e59905
+FROM daocloud.io/ceylog/server-jre8:master-5f4c2d3
 
 WORKDIR /tmp
 
