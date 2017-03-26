@@ -10,4 +10,9 @@ public class HelloController{
         return "hello";
     }
 
+    @RequestMapping("/hello")
+    public String hello2(){
+        return "{name:'xiaowang',age:15,sex:'男'}";
+    }
+
 }
