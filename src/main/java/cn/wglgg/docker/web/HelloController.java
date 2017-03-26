@@ -15,4 +15,9 @@ public class HelloController{
         return "{name:'xiaowang',age:15,sex:'男'}";
     }
 
+    @RequestMapping("/hello1")
+    public String hello3(String name){
+        return "hello"+name;
+    }
+
 }
